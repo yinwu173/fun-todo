@@ -1,11 +1,22 @@
 // Import package
-const apiRoutes = require('express').Router();
+const apiRouter = require('express').Router();
+const fs = require('fs').promises;
+const path = require('path');
 
 // Helper function to generate unique ids
 const uuid = require('../helpers/uuid');
 
 // GET /api/notes should read the db.json file and return all saved notes as JSON.
-
+// Create GET route to read saved notes in json file
+// Used Expert Learning Assistant for lines 12-18
+router.get('/api/notes', async (req, res) => {
+    try {
+        const notes = await fs.readFile(path.join(__dirname, './db/db.json'));
+        res.json(JSON.parse(notes));
+    } catch (error) {
+        res.status(500).json({ message: 'error' });
+    }
+});
 
 
 // POST /api/notes should receive a new note to save on the request body
@@ -21,4 +32,4 @@ const uuid = require('../helpers/uuid');
 
 
 // Export apiRoutes
-module.exports = apiRoutes;
+module.exports = apiRouter;
