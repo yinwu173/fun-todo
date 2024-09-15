@@ -1,5 +1,5 @@
 // Import package
-const apiRouter = require('express').Router();
+const router = require('express').Router();
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -56,4 +56,4 @@ router.post('/notes', (req, res) => {
 
 
 // Export apiRoutes
-module.exports = apiRouter;
+module.exports = router;
