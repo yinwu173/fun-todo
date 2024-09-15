@@ -23,14 +23,31 @@ router.get('/notes', async (req, res) => {
 // POST /api/notes should receive a new note to save on the request body
 router.post('/notes', (req, res) => {
     const notes = req.body;
+    // Read the existing notes from db.json
+    fs.readFile.readFile(path.join(__dirname, '..db/db.json'), 'utf8', (err, notes) => {
+        if (err) {
+            return res.status(500).json({ error: 'error' });
+        }
+    // parse existing notes
+    notes = JSON.parse(notes);
+    
+    // if notes are present
+    if (notes) {
+        const newNote = {
+            title,
+            text,
+            id: uuid(),
+        };
 
+        
+    }
 
     // Add it to the db.json file
 
 
 
     // Then return the new note to the client. 
-
+    })
 })
 
 
