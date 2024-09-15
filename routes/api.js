@@ -12,7 +12,7 @@ const uuid = require('../helpers/uuid');
 // Used async/await to handle the asynchronous nature of fs.readFile
 router.get('/notes', async (req, res) => {
     try {
-        const notes = await fs.readFile(path.join(__dirname, './db/db.json'));
+        const notes = await fs.readFile(path.join(__dirname, '..db/db.json'));
         res.json(JSON.parse(notes));
     } catch (error) {
         res.status(500).json({ message: 'error' });
