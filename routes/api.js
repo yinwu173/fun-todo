@@ -5,7 +5,6 @@ const path = require('path');
 
 // Helper function to generate unique ids
 const uuid = require('../helpers/uuid');
-const { error } = require('console');
 
 // GET /api/notes should read the db.json file and return all saved notes as JSON.
 // Create GET route to read saved notes in json file
@@ -51,7 +50,7 @@ router.post('/notes', (req, res) => {
                     res.status(201).json(newNote);
                 }
             })
-        }
+        };
     });
 });
 
