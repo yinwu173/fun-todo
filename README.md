@@ -37,3 +37,6 @@
 
 * Received additional assistance from Xpert Learning Assistant for line 27 in the api.js file. We use the fs.readFile to read the existing notes in the JSON file. If there is an error in reading the notes, then an error json message will log.
 
+* For uuid.js, obtained the helper function from Module 11 - Activity 26 of the UCB Gitlab assignment. This function using math.random to generate a string of random numbers and letters.
+
+
