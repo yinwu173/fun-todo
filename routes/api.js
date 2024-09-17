@@ -22,14 +22,12 @@ router.get('/notes', async (req, res) => {
 
 // POST /api/notes should receive a new note to save on the request body
 router.post('/notes', (req, res) => {
-    const note = req.body;
+    const { title, text } = req.body;
     // Read the existing notes from db.json
-    fs.readFile.readFile(path.join(__dirname, '..db/db.json'), 'utf8', (err, notes) => {
+    fs.readFile(path.join(__dirname, '..db/db.json'), 'utf8', (err, notes) => {
         if (err) {
             return res.status(500).json({ error: 'error' });
         }
-        // parse existing notes
-        note = JSON.parse(notes);
 
         // if notes are present
         if (notes) {
@@ -39,17 +37,20 @@ router.post('/notes', (req, res) => {
                 text,
                 id: uuid(),
             };
+
+            // parse existing notes
+            const note = JSON.parse(notes);
             // add new note to the notes array
-            notes.push(newNote);
+            note.push(newNote);
 
             // Add it to the db.json file and then return the new note to the client
-            fs.writeFile(path.join(__dirname, '..db/db.json'), JSON.stringify(newNotes), (err, newNote) => {
+            fs.writeFile(path.join(__dirname, '..db/db.json'), JSON.stringify(note), (err) => {
                 if (err) {
                     return res.status(500).json({ error: 'Failed to save note' });
                 } else {
-                    res.status(201).json(newNote);
+                    res.json(newNote);
                 }
-            })
+            });
         };
     });
 });
